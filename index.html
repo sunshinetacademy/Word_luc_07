@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة السابعة — صياغة العقود القانونية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f8f4ed;--cream-dark:#ede8de;--ink:#1c1a17;--ink-mid:#4a4540;
+  --ink-soft:#7a7268;--rule:#cfc8ba;--gold:#9c7c2e;--gold-light:#c9a84c;
+  --gold-bg:rgba(156,124,46,0.08);--red:#8b2020;--red-bg:#fdf0f0;
+  --green:#1e5c3a;--green-bg:#edf5f0;--blue:#1a3a6b;--blue-bg:#eef2f9;
+  --purple:#5b2d8e;--purple-bg:#f3eefb;--teal:#0e6b6b;--teal-bg:#e8f5f5;
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Cairo',sans-serif;font-size:16px;line-height:1.85;}
+.page{max-width:960px;margin:0 auto;padding:0 24px 100px;}
+
+/* COVER */
+.cover{background:var(--ink);color:var(--cream);padding:64px 48px 48px;margin:0 -24px 60px;position:relative;overflow:hidden;}
+.cover::before{content:'📜';position:absolute;left:-20px;top:-10px;font-size:220px;opacity:0.05;line-height:1;}
+.cover .meta{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:20px;}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,50px);font-weight:900;margin:0 0 12px;line-height:1.2;color:#fff;}
+.cover .sub{color:rgba(248,244,237,0.65);font-size:17px;margin:0 0 36px;}
+.cover-pills{display:flex;flex-wrap:wrap;gap:10px;}
+.pill{border:1px solid rgba(201,168,76,0.4);color:var(--gold-light);font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 14px;border-radius:20px;letter-spacing:1px;}
+
+/* PROGRESS */
+.progress-strip{display:flex;gap:0;margin-bottom:56px;border:1px solid var(--rule);border-radius:8px;overflow:hidden;font-family:'JetBrains Mono',monospace;font-size:11px;}
+.ps-item{flex:1;padding:10px 12px;text-align:center;color:var(--ink-soft);border-left:1px solid var(--rule);background:#fff;}
+.ps-item:last-child{border-left:none;}
+.ps-item.done{background:var(--green-bg);color:var(--green);}
+.ps-item.active{background:var(--ink);color:var(--gold-light);font-weight:700;}
+.ps-item .ps-num{display:block;font-size:16px;font-weight:700;margin-bottom:2px;}
+
+/* SECTIONS */
+section{margin-bottom:64px;}
+.sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;padding-bottom:12px;border-bottom:2.5px solid var(--ink);}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--gold);border:2px solid var(--gold);border-radius:4px;padding:4px 8px;white-space:nowrap;margin-top:4px;}
+.sec-head h2{margin:0;font-size:clamp(20px,3vw,28px);font-weight:900;line-height:1.25;}
+.sec-head .sec-why{font-size:13px;color:var(--ink-soft);margin-top:4px;font-weight:400;}
+p{margin:0 0 14px;}
+h3{margin:20px 0 12px;font-size:18px;}
+
+/* BOXES */
+.def-box{background:var(--blue-bg);border-right:4px solid var(--blue);border-radius:0 8px 8px 0;padding:16px 20px;margin:14px 0;font-size:15px;}
+.def-box .def-term{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;color:var(--blue);letter-spacing:1px;display:block;margin-bottom:4px;}
+.def-box-teal{background:var(--teal-bg);border-right:4px solid var(--teal);border-radius:0 8px 8px 0;padding:16px 20px;margin:14px 0;font-size:15px;}
+.def-box-teal .def-term{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;color:var(--teal);letter-spacing:1px;display:block;margin-bottom:4px;}
+.def-box-purple{background:var(--purple-bg);border-right:4px solid var(--purple);border-radius:0 8px 8px 0;padding:16px 20px;margin:14px 0;font-size:15px;}
+.def-box-purple .def-term{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;color:var(--purple);letter-spacing:1px;display:block;margin-bottom:4px;}
+.callout{background:var(--gold-bg);border:1.5px solid var(--gold);border-radius:10px;padding:18px 22px;margin:18px 0;font-size:15px;}
+.callout .c-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);font-weight:700;text-transform:uppercase;display:block;margin-bottom:6px;}
+.warn{background:var(--red-bg);border-right:4px solid var(--red);border-radius:0 8px 8px 0;padding:14px 18px;margin:18px 0;font-size:15px;}
+.warn .w-tag{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--red);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:4px;}
+.tip{background:var(--green-bg);border-right:4px solid var(--green);border-radius:0 8px 8px 0;padding:14px 18px;margin:18px 0;font-size:15px;}
+.tip .t-tag{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:4px;}
+
+/* PATH & KEY */
+.path{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:13px;background:#fff;border:1px solid var(--rule);border-radius:6px;padding:7px 14px;margin:6px 0 12px;direction:ltr;flex-wrap:wrap;}
+.path .arr{color:var(--gold);font-weight:700;}
+.key{display:inline-block;font-family:'JetBrains Mono',monospace;background:var(--ink);color:var(--cream);font-size:12px;font-weight:700;padding:3px 10px;border-radius:5px;margin:0 2px;direction:ltr;white-space:nowrap;}
+
+/* GRIDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:18px 0;}
+@media(max-width:680px){.grid-2,.grid-3{grid-template-columns:1fr;}.progress-strip{flex-direction:column;}.ps-item{border-left:none;border-top:1px solid var(--rule);}}
+.card{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:18px 20px;}
+.card .c-icon{font-size:24px;margin-bottom:8px;display:block;}
+.card h3{margin:0 0 8px;font-size:16px;font-weight:700;}
+.card p{margin:0;color:var(--ink-mid);font-size:14px;}
+
+/* TABLES */
+.sc-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px;}
+.sc-table th{text-align:right;padding:10px 12px;border-bottom:2px solid var(--ink);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);}
+.sc-table td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top;}
+.sc-table tr:hover td{background:var(--cream-dark);}
+.sc-law{font-size:12px;color:var(--blue);background:var(--blue-bg);border-radius:4px;padding:2px 8px;display:inline-block;margin-top:3px;}
+
+/* GLOSSARY */
+dl.glossary{margin:0;}
+dl.glossary>div{display:grid;grid-template-columns:210px 1fr;gap:14px;padding:14px 6px;border-bottom:1px solid var(--rule);align-items:start;}
+@media(max-width:600px){dl.glossary>div{grid-template-columns:1fr;gap:2px;}}
+dl.glossary dt{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--blue);direction:ltr;text-align:left;}
+dl.glossary dd{margin:0;font-size:15px;}
+
+/* EXAMPLE */
+.example{border:1.5px solid var(--rule);border-radius:10px;overflow:hidden;margin:20px 0;}
+.example .ex-head{background:var(--ink);color:var(--gold-light);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:10px 18px;}
+.example .ex-body{background:#fff;padding:20px 22px;font-size:15px;}
+.example .ex-body h4{margin:0 0 10px;font-size:15px;color:var(--ink-mid);}
+
+/* DRILL */
+.drill{background:var(--ink);color:var(--cream);border-radius:10px;padding:22px 24px;margin:22px 0;}
+.drill .drill-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;display:block;}
+.drill h4{margin:0 0 10px;color:#fff;font-size:16px;}
+.drill ol{margin:0;padding-right:20px;font-size:14.5px;color:rgba(248,244,237,0.85);}
+.drill li{margin-bottom:7px;}
+.drill .drill-time{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold-light);}
+
+/* COMPARE */
+.compare{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin:18px 0;}
+@media(max-width:620px){.compare{grid-template-columns:1fr;}}
+.compare>div{padding:20px;}
+.compare .bad{background:var(--red-bg);}
+.compare .good{background:var(--green-bg);border-right:1px solid var(--rule);}
+.compare h4{margin:0 0 10px;font-size:14px;font-weight:700;}
+.compare ul{margin:0;padding-right:18px;font-size:14px;color:var(--ink-mid);}
+.compare li{margin-bottom:7px;}
+
+/* CHECKLIST */
+.checklist{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
+.checklist li{display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid var(--rule);border-radius:8px;padding:12px 16px;font-size:15px;}
+.check-box{width:20px;height:20px;border:2px solid var(--green);border-radius:4px;flex-shrink:0;margin-top:3px;}
+
+/* Q GRID */
+.q-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0;}
+@media(max-width:620px){.q-grid{grid-template-columns:1fr;}}
+.q-card{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:18px 20px;}
+.q-card h3{margin:0 0 12px;font-size:15px;font-weight:700;}
+.q-card ol{margin:0;padding-right:20px;font-size:14px;color:var(--ink-mid);}
+.q-card li{margin-bottom:8px;}
+
+/* RECAP */
+.recap{border:2px dashed var(--green);border-radius:10px;background:var(--green-bg);padding:20px 24px;margin-bottom:48px;}
+.recap .r-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--green);font-weight:700;text-transform:uppercase;display:block;margin-bottom:8px;}
+
+/* ─── عقد mock ─── */
+.contract-mock{max-width:580px;margin:20px auto;border:2px solid var(--ink);background:#fff;padding:28px 32px;box-shadow:8px 8px 0 var(--cream-dark);font-size:14px;line-height:2.1;}
+.contract-mock .cm-bism{text-align:center;font-size:16px;font-weight:900;margin-bottom:6px;}
+.contract-mock .cm-title{text-align:center;font-size:18px;font-weight:900;color:var(--blue);margin-bottom:4px;text-decoration:underline;}
+.contract-mock .cm-subtitle{text-align:center;font-size:13px;color:var(--ink-soft);margin-bottom:20px;}
+.contract-mock .cm-parties{background:var(--blue-bg);border-right:4px solid var(--blue);padding:10px 14px;border-radius:0 6px 6px 0;margin-bottom:14px;font-size:13px;}
+.contract-mock .cm-clause{margin-bottom:10px;font-size:13.5px;}
+.contract-mock .cm-clause strong{color:var(--blue);}
+.contract-mock .cm-sig{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px;font-size:12px;text-align:center;}
+.contract-mock .cm-sig-box{border-top:1px solid var(--ink);padding-top:8px;}
+.content-ctrl{display:inline-block;background:var(--purple-bg);border:1.5px solid var(--purple);border-radius:3px;padding:0 6px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--purple);}
+
+/* ─── Numbering levels diagram ─── */
+.num-demo{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:20px 24px;margin:16px 0;font-size:14px;line-height:2.3;}
+.num-l1{font-weight:700;color:var(--blue);}
+.num-l2{padding-right:22px;color:var(--ink-mid);}
+.num-l3{padding-right:44px;color:var(--ink-soft);}
+.num-l4{padding-right:66px;color:var(--ink-soft);font-size:13px;}
+
+footer{text-align:center;padding:24px;border-top:1px solid var(--rule);margin-top:60px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:var(--ink-soft);text-transform:uppercase;}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- COVER -->
+<header class="cover">
+  <div class="meta">Sunshine T Academy · Word Skills · كليات الحقوق · المحاضرة السابعة</div>
+  <h1>صياغة العقود القانونية<br>في Word</h1>
+  <p class="sub">هيكل العقود — ترقيم البنود — Content Controls — نماذج عقود البيع والإيجار والتوكيل</p>
+  <div class="cover-pills">
+    <span class="pill">المدة: ساعة ونص</span>
+    <span class="pill">المستوى: متقدم</span>
+    <span class="pill">Word 365</span>
+    <span class="pill">المحاضرة ٧ / ١٠</span>
+  </div>
+</header>
+
+<!-- PROGRESS -->
+<div class="progress-strip">
+  <div class="ps-item done"><span class="ps-num">١</span>الأساسيات ✓</div>
+  <div class="ps-item done"><span class="ps-num">٢</span>البحوث ✓</div>
+  <div class="ps-item done"><span class="ps-num">٣</span>الجداول ✓</div>
+  <div class="ps-item done"><span class="ps-num">٤</span>الصور ✓</div>
+  <div class="ps-item done"><span class="ps-num">٥</span>الأدوات ✓</div>
+  <div class="ps-item done"><span class="ps-num">٦</span>المراسلات ✓</div>
+  <div class="ps-item active"><span class="ps-num">٧</span>العقود</div>
+  <div class="ps-item"><span class="ps-num">٨</span>التعاون</div>
+  <div class="ps-item"><span class="ps-num">٩</span>الطباعة</div>
+  <div class="ps-item"><span class="ps-num">١٠</span>المشروع</div>
+</div>
+
+<!-- RECAP -->
+<div class="recap">
+  <span class="r-tag">⚡ مراجعة سريعة من المحاضرة السادسة — ٥ دقايق</span>
+  <ul style="margin:6px 0 10px;padding-right:20px;font-size:15px;">
+    <li>ما المكونات الثلاثة لعملية Mail Merge؟ وكيف تُدرجين حقل دمج؟</li>
+    <li>ما الفرق بين .docx و .dotx؟ ولماذا نحتاج نموذج Template؟</li>
+    <li>هل جهّزتِ نموذج الخطاب كـ .dotx وملف Excel للواجب؟</li>
+  </ul>
+  <div class="tip" style="margin:0">
+    <span class="t-tag">الربط بالمحاضرة دي</span>
+    تعلّمنا إنتاج المراسلات بكميات كبيرة. النهارده هنتعلم الوثيقة الأكثر أهمية في القانون — العقد. كيف نبنيه، ننسقه، ونحوّله لنموذج قابل للتعبئة يستخدمه المكتب كل يوم.
+  </div>
+</div>
+
+<!-- 01. WHY -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div>
+      <h2>لماذا صياغة العقود في Word تحتاج مهارة خاصة؟</h2>
+      <div class="sec-why">تأسيس الدافع — ٥ دقايق</div>
+    </div>
+  </div>
+
+  <p>العقد ليس مجرد نص — هو وثيقة قانونية ملزمة. أي خطأ في الترقيم أو التسلسل أو الصياغة قد يُفقده قيمته القانونية أو يُفسّره القضاء بطريقة مختلفة.</p>
+
+  <div class="callout">
+    <span class="c-tag">الحقيقة التي يعرفها كل محامٍ</span>
+    عقد منسق احترافياً بترقيم صحيح وبنود واضحة = قرينة على دقة محرّره. عقد مكتوب بأسطر متراكمة وترقيم يدوي = مستند هش يسهل الطعن فيه. الشكل في القانون جزء من المضمون.
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <span class="c-icon">🔢</span>
+      <h3>ترقيم البنود</h3>
+      <p>ترقيم متعدد المستويات تلقائي — لا يتغير بالخطأ عند إضافة بند جديد.</p>
+    </div>
+    <div class="card">
+      <span class="c-icon">📝</span>
+      <h3>Content Controls</h3>
+      <p>حقول قابلة للتعبئة في العقد — الموكّل يملأ اسمه وتاريخه بدون تعديل البنود.</p>
+    </div>
+    <div class="card">
+      <span class="c-icon">🔒</span>
+      <h3>حماية البنود</h3>
+      <p>تأمين صياغة العقد مع السماح بملء البيانات فقط في الأماكن المخصصة.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02. CONTRACT STRUCTURE -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div>
+      <h2>هيكل العقد القانوني المعياري</h2>
+      <div class="sec-why">نظري — أساس كل عقد — ١٠ دقايق</div>
+    </div>
+  </div>
+
+  <p>كل عقد قانوني — بيع، إيجار، توكيل، زواج، عمل — يتبع هيكلاً ثابتاً متعارفاً عليه في الفقه والتطبيق القضائي المصري.</p>
+
+  <!-- Contract mock -->
+  <div class="contract-mock">
+    <div class="cm-bism">بسم الله الرحمن الرحيم</div>
+    <div class="cm-title">عقد بيع عقار</div>
+    <div class="cm-subtitle">المحرَّر في <span class="content-ctrl">التاريخ</span> — أمام <span class="content-ctrl">اسم الموثَّق</span></div>
+    <div class="cm-parties">
+      <strong>الطرف الأول (البائع):</strong> السيد / <span class="content-ctrl">اسم البائع</span> — الرقم القومي: <span class="content-ctrl">الرقم القومي</span><br>
+      <strong>الطرف الثاني (المشتري):</strong> السيد / <span class="content-ctrl">اسم المشتري</span> — الرقم القومي: <span class="content-ctrl">الرقم القومي</span>
+    </div>
+    <div class="cm-clause"><strong>البند الأول: تمهيد</strong><br>
+    يمتلك الطرف الأول العقار الموضح الحدود والمعالم أدناه ملكية تامة خالصة من أي نزاع...</div>
+    <div class="cm-clause"><strong>البند الثاني: محل العقد</strong><br>
+    يبيع الطرف الأول ويتنازل للطرف الثاني عن العقار الكائن في <span class="content-ctrl">العنوان</span>...</div>
+    <div class="cm-clause"><strong>البند الثالث: الثمن وطريقة السداد</strong><br>
+    اتفق الطرفان على ثمن البيع بمبلغ <span class="content-ctrl">المبلغ بالأرقام</span> جنيهاً مصرياً...</div>
+    <div class="cm-sig">
+      <div class="cm-sig-box">الطرف الأول (البائع)<br><span class="content-ctrl">الاسم والتوقيع</span></div>
+      <div class="cm-sig-box">الطرف الثاني (المشتري)<br><span class="content-ctrl">الاسم والتوقيع</span></div>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:12px;color:var(--ink-soft);font-family:'JetBrains Mono',monospace">المستطيلات الأرجوانية = Content Controls (حقول قابلة للتعبئة)</p>
+
+  <h3>عناصر العقد القانوني المعياري</h3>
+  <table class="sc-table">
+    <thead><tr><th>العنصر</th><th>الوصف</th><th>الموضع</th></tr></thead>
+    <tbody>
+      <tr><td><strong>البسملة</strong></td><td>بسم الله الرحمن الرحيم — في كل العقود المصرية</td><td>أعلى الصفحة — توسيط — Bold</td></tr>
+      <tr><td><strong>عنوان العقد</strong></td><td>"عقد بيع" أو "عقد إيجار" إلخ</td><td>وسط الصفحة — Bold — حجم 18 — مُسطَّر</td></tr>
+      <tr><td><strong>التاريخ والتوثيق</strong></td><td>تاريخ تحرير العقد ومكانه</td><td>تحت العنوان — حجم 12</td></tr>
+      <tr><td><strong>بيانات الأطراف</strong></td><td>الاسم، الرقم القومي، العنوان، الصفة لكل طرف</td><td>مع تمييز بصري لكل طرف</td></tr>
+      <tr><td><strong>التمهيد</strong></td><td>وصف الوضع القانوني قبل التعاقد</td><td>البند الأول عادةً</td></tr>
+      <tr><td><strong>محل العقد</strong></td><td>الشيء أو الخدمة أو الحق موضوع التعاقد</td><td>بند مستقل بتفاصيل دقيقة</td></tr>
+      <tr><td><strong>الثمن والسداد</strong></td><td>المقابل المالي وطريقة وأوقات السداد</td><td>بند مستقل — الأرقام بالحروف والأرقام معاً</td></tr>
+      <tr><td><strong>التزامات الأطراف</strong></td><td>ما يلتزم به كل طرف تجاه الآخر</td><td>بنود منفصلة لكل طرف</td></tr>
+      <tr><td><strong>الشروط الخاصة</strong></td><td>شروط إضافية متفق عليها بين الطرفين</td><td>بنود مرقّمة ومنظّمة</td></tr>
+      <tr><td><strong>الفسخ والإنهاء</strong></td><td>حالات إنهاء العقد وآثاره</td><td>بند خاص</td></tr>
+      <tr><td><strong>التوقيعات</strong></td><td>توقيع كل طرف مع الاسم والتاريخ</td><td>أسفل الصفحة الأخيرة</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Example 1 -->
+  <div class="example">
+    <div class="ex-head">📋 مثال ١ — بنية عقد الإيجار الكاملة</div>
+    <div class="ex-body">
+      <h4>السيناريو: إعداد عقد إيجار شقة سكنية وفق القانون المصري</h4>
+      <p>البنود الأساسية المطلوبة بالترتيب:</p>
+      <ol>
+        <li>البسملة + عنوان "عقد إيجار سكني"</li>
+        <li>بيانات الطرفين (المالك والمستأجر) — رقم قومي + عنوان</li>
+        <li>البند الأول: وصف العين المؤجرة (الشقة — الموقع — المساحة)</li>
+        <li>البند الثاني: مدة الإيجار (من... إلى...)</li>
+        <li>البند الثالث: القيمة الإيجارية وميعاد السداد</li>
+        <li>البند الرابع: التزامات المالك (الصيانة — الخدمات)</li>
+        <li>البند الخامس: التزامات المستأجر (الحفاظ على العين — منع التأجير من الباطن)</li>
+        <li>البند السادس: حالات الفسخ</li>
+        <li>البند السابع: التسليم والإخلاء</li>
+        <li>البند الثامن: الشروط الخاصة المتفق عليها</li>
+        <li>التوقيعات + الشهود</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- 03. MULTILEVEL NUMBERING -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div>
+      <h2>ترقيم البنود متعدد المستويات</h2>
+      <div class="sec-why">الأداة الأهم في العقود — ١٥ دقيقة</div>
+    </div>
+  </div>
+
+  <div class="def-box">
+    <span class="def-term">Multilevel List (قائمة متعددة المستويات)</span>
+    نظام ترقيم تلقائي يُنشئ تسلسلاً هرمياً للبنود (١ ← ١.١ ← ١.١.١) مع تحديث تلقائي عند الإضافة أو الحذف. لا يمكن الاستغناء عنه في العقود الطويلة.
+  </div>
+
+  <div class="path">Home <span class="arr">→</span> Multilevel List <span class="arr">→</span> اختاري النمط المناسب</div>
+
+  <h3>أ. مثال على هيكل ترقيم عقد قانوني</h3>
+  <div class="num-demo">
+    <div class="num-l1">١. البند الأول: محل العقد</div>
+    <div class="num-l2">١.١ وصف العقار المبيع</div>
+    <div class="num-l3">١.١.١ الموقع والعنوان التفصيلي</div>
+    <div class="num-l3">١.١.٢ المساحة الإجمالية والصافية</div>
+    <div class="num-l2">١.٢ الحدود والأطوار</div>
+    <div class="num-l3">١.٢.١ الحد الشرقي</div>
+    <div class="num-l3">١.٢.٢ الحد الغربي</div>
+    <div class="num-l1">٢. البند الثاني: الثمن وطريقة السداد</div>
+    <div class="num-l2">٢.١ إجمالي الثمن المتفق عليه</div>
+    <div class="num-l2">٢.٢ جدول السداد</div>
+    <div class="num-l3">٢.٢.١ الدفعة الأولى (المقدّم)</div>
+    <div class="num-l3">٢.٢.٢ الدفعات الشهرية</div>
+  </div>
+
+  <h3>ب. إنشاء قائمة متعددة المستويات مخصصة للعقود</h3>
+  <div class="path">Home <span class="arr">→</span> Multilevel List <span class="arr">→</span> Define New Multilevel List</div>
+
+  <table class="sc-table">
+    <thead><tr><th>المستوى</th><th>نمط الترقيم</th><th>الاستخدام</th><th>اختصار التحريك</th></tr></thead>
+    <tbody>
+      <tr><td><strong>المستوى ١</strong></td><td>١. ، ٢. ، ٣.</td><td>البنود الرئيسية</td><td>بداية السطر (لا يوجد Tab)</td></tr>
+      <tr><td><strong>المستوى ٢</strong></td><td>١.١ ، ١.٢ ، ١.٣</td><td>الفقرات الفرعية</td><td><span class="key">Tab</span> في بداية السطر</td></tr>
+      <tr><td><strong>المستوى ٣</strong></td><td>١.١.١ ، ١.١.٢</td><td>التفاصيل الدقيقة</td><td><span class="key">Tab</span> مرتان</td></tr>
+      <tr><td><strong>الرجوع لمستوى أعلى</strong></td><td>—</td><td>—</td><td><span class="key">Shift + Tab</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="warn">
+    <span class="w-tag">خطأ شائع في عقود الطلاب</span>
+    الترقيم اليدوي ("١-" ثم "١.١-" يدوياً) — لما تضيفي بند جديد لازم تغيري كل الأرقام التالية بإيدك. الحل الوحيد: Multilevel List التلقائي.
+  </div>
+
+  <!-- Drill 1 -->
+  <div class="drill">
+    <span class="drill-tag">تدريب ١ — ترقيم بنود عقد بيع</span>
+    <h4>أنشئي هيكل عقد بيع بترقيم متعدد المستويات:</h4>
+    <ol>
+      <li>مستند جديد — فعّلي Multilevel List من Home</li>
+      <li>اكتبي "البند الأول: تمهيد" (المستوى ١)</li>
+      <li>اضغطي <span class="key">Enter</span> ثم <span class="key">Tab</span> — اكتبي "ملكية البائع" (المستوى ٢)</li>
+      <li>اضغطي <span class="key">Enter</span> ثم <span class="key">Tab</span> مرة أخرى — اكتبي "سند الملكية" (المستوى ٣)</li>
+      <li>اضغطي <span class="key">Shift + Tab</span> للرجوع — اكتبي "البند الثاني: محل العقد"</li>
+      <li>أضيفي ٣ فقرات فرعية تحته</li>
+      <li>امسحي البند الثاني وراقبي كيف يتحرك الترقيم تلقائياً</li>
+    </ol>
+    <div class="drill-time">⏱ الوقت المتوقع: 8 دقايق</div>
+  </div>
+</section>
+
+<!-- 04. CONTENT CONTROLS -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div>
+      <h2>حقول التعبئة (Content Controls)</h2>
+      <div class="sec-why">تحويل العقد لنموذج ذكي — ٢٠ دقيقة</div>
+    </div>
+  </div>
+
+  <div class="def-box-teal">
+    <span class="def-term">Content Controls</span>
+    عناصر تفاعلية تُدرج في المستند تسمح للمستخدم بملء بيانات محددة (نص، تاريخ، قائمة) دون تعديل النص القانوني الثابت. تُحوّل العقد لنموذج احترافي قابل للتعبئة.
+  </div>
+
+  <h3>أ. تفعيل تبويب Developer (المطوّر)</h3>
+  <div class="path">File <span class="arr">→</span> Options <span class="arr">→</span> Customize Ribbon <span class="arr">→</span> ☑ Developer</div>
+  <p>تبويب Developer لا يظهر افتراضياً — لازم تُفعّليه مرة واحدة فقط.</p>
+
+  <h3>ب. أنواع Content Controls</h3>
+  <div class="grid-2">
+    <div class="card">
+      <span class="c-icon">📝</span>
+      <h3>Rich Text Control</h3>
+      <p>حقل نص يقبل أي محتوى بما فيه التنسيق. للأسماء والعناوين الطويلة.</p>
+    </div>
+    <div class="card">
+      <span class="c-icon">🔤</span>
+      <h3>Plain Text Control</h3>
+      <p>حقل نص عادي بدون تنسيق. للأرقام القومية والمبالغ والأرقام.</p>
+    </div>
+    <div class="card">
+      <span class="c-icon">📅</span>
+      <h3>Date Picker Control</h3>
+      <p>حقل تاريخ يعرض تقويماً للاختيار منه. لتاريخ العقد وتواريخ الاستحقاق.</p>
+    </div>
+    <div class="card">
+      <span class="c-icon">🔽</span>
+      <h3>Drop-Down List Control</h3>
+      <p>قائمة منسدلة بخيارات محددة مسبقاً. لنوع العقد، المحافظة، طريقة السداد.</p>
+    </div>
+    <div class="card">
+      <span class="c-icon">☑️</span>
+      <h3>Check Box Control</h3>
+      <p>خانة اختيار. لتأكيد الموافقة على شروط معينة في العقد.</p>
+    </div>
+    <div class="card">
+      <span class="c-icon">🖼</span>
+      <h3>Picture Control</h3>
+      <p>حقل لإدراج صورة (صورة شخصية أو ختم رسمي) في مكان محدد.</p>
+    </div>
+  </div>
+
+  <h3>ج. خطوات إدراج Content Control</h3>
+  <div class="path">Developer <span class="arr">→</span> اختاري نوع الـ Control المطلوب</div>
+
+  <table class="sc-table">
+    <thead><tr><th>الخطوة</th><th>الإجراء</th></tr></thead>
+    <tbody>
+      <tr><td><strong>١</strong></td><td>ضعي المؤشر في مكان الحقل في العقد</td></tr>
+      <tr><td><strong>٢</strong></td><td>Developer → اختاري نوع الـ Control</td></tr>
+      <tr><td><strong>٣</strong></td><td>النقر على الـ Control → Properties (لضبط العنوان والنص الافتراضي)</td></tr>
+      <tr><td><strong>٤</strong></td><td>في "Title": اكتبي اسم الحقل (مثل "اسم البائع")</td></tr>
+      <tr><td><strong>٥</strong></td><td>في "Placeholder text": اكتبي التعليمات (مثل "اكتب اسمك الثلاثي هنا")</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Example 2 -->
+  <div class="example">
+    <div class="ex-head">📋 مثال ٢ — عقد توكيل قابل للتعبئة</div>
+    <div class="ex-body">
+      <h4>السيناريو: تحويل عقد توكيل ثابت إلى نموذج يُملأ بسهولة</h4>
+      <ol>
+        <li>افتحي عقد التوكيل المكتوب كنص عادي</li>
+        <li>احذفي اسم الموكّل — ضعي مكانه: Developer → Plain Text Control</li>
+        <li>Properties → Title: "اسم الموكّل" | Placeholder: "اكتب الاسم كاملاً"</li>
+        <li>احذفي تاريخ التوكيل — Developer → Date Picker Control</li>
+        <li>Properties → Date Format: d/M/yyyy (التنسيق المصري)</li>
+        <li>عند صلاحيات التوكيل: أضيفي Check Box Controls لكل صلاحية</li>
+        <li>احفظي كـ Template: .dotx → "نموذج_عقد_توكيل.dotx"</li>
+        <li>Review → Restrict Editing → Filling in forms فقط + Enforce Protection</li>
+      </ol>
+      <div class="tip" style="margin-top:12px;margin-bottom:0">
+        <span class="t-tag">النتيجة</span>
+        الموكّل يفتح النموذج → ينتقل بين الحقول بـ Tab → يملأ بياناته → يحفظ. لا يمكنه تعديل البنود القانونية أبداً.
+      </div>
+    </div>
+  </div>
+
+  <!-- Drill 2 -->
+  <div class="drill">
+    <span class="drill-tag">تدريب ٢ — تحويل عقد إيجار لنموذج ذكي</span>
+    <h4>أنشئي عقد إيجار قابل للتعبئة بـ Content Controls:</h4>
+    <ol>
+      <li>فعّلي Developer Tab من: File → Options → Customize Ribbon</li>
+      <li>أنشئي عقد إيجار بسيط (٥ بنود) مع النص القانوني الثابت</li>
+      <li>أضيفي Plain Text Control لـ: اسم المالك | اسم المستأجر | عنوان الشقة</li>
+      <li>أضيفي Date Picker Control لـ: تاريخ بداية الإيجار | تاريخ النهاية</li>
+      <li>أضيفي Drop-Down List لـ "طريقة السداد": نقداً | تحويل بنكي | شيك</li>
+      <li>أضيفي Check Box لـ "الموافقة على الشروط العامة"</li>
+      <li>Review → Restrict Editing → Filling in forms → Enforce Protection</li>
+      <li>احفظي كـ "نموذج_عقد_إيجار.dotx"</li>
+    </ol>
+    <div class="drill-time">⏱ الوقت المتوقع: 15 دقيقة</div>
+  </div>
+</section>
+
+<!-- 05. CONTRACT FORMATTING RULES -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div>
+      <h2>قواعد تنسيق العقد القانوني الاحترافي</h2>
+      <div class="sec-why">معايير التنسيق — ١٠ دقايق</div>
+    </div>
+  </div>
+
+  <p>العقد المنسق احترافياً له معايير ثابتة في المكاتب القانونية والمحاكم المصرية.</p>
+
+  <h3>أ. معايير الخط والتباعد في العقود</h3>
+  <table class="sc-table">
+    <thead><tr><th>العنصر</th><th>الخط المناسب</th><th>الحجم</th><th>التنسيق</th></tr></thead>
+    <tbody>
+      <tr><td><strong>عنوان العقد</strong></td><td>Sakkal Majalla</td><td>18</td><td>Bold + Center + Underline</td></tr>
+      <tr><td><strong>التاريخ والتوثيق</strong></td><td>Sakkal Majalla</td><td>12</td><td>Normal + Center</td></tr>
+      <tr><td><strong>بيانات الأطراف</strong></td><td>Sakkal Majalla</td><td>12</td><td>Bold للتسمية + Normal للبيانات</td></tr>
+      <tr><td><strong>عناوين البنود</strong></td><td>Sakkal Majalla</td><td>13</td><td>Bold فقط</td></tr>
+      <tr><td><strong>نص البنود</strong></td><td>Sakkal Majalla</td><td>12</td><td>Normal + Justify + تباعد 1.5</td></tr>
+      <tr><td><strong>التوقيعات</strong></td><td>Sakkal Majalla</td><td>12</td><td>Normal + Center</td></tr>
+    </tbody>
+  </table>
+
+  <h3>ب. الأرقام في العقود — قاعدة مهمة</h3>
+  <div class="callout">
+    <span class="c-tag">القاعدة الذهبية للأرقام في العقود</span>
+    كل مبلغ مالي أو عدد في العقد يجب كتابته مرتين: بالأرقام أولاً ثم بالحروف بين قوسين. مثال: "مبلغ ٢٥٠,٠٠٠ جنيه (مئتان وخمسون ألف جنيه مصري)". هذا يمنع التزوير ويُعد شرطاً في كثير من أنواع العقود.
+  </div>
+
+  <h3>ج. Page Break بين الصفحات</h3>
+  <p>كل بند رئيسي طويل يجب أن يبدأ من نفس الصفحة — لا يُقطع بين صفحتين:</p>
+  <div class="path">حدّدي البند ← Home <span class="arr">→</span> Paragraph <span class="arr">→</span> Line and Page Breaks <span class="arr">→</span> ☑ Keep with next</div>
+
+  <h3>د. ترقيم صفحات العقود</h3>
+  <p>كل صفحة في العقد تحمل رقمها من إجمالي الصفحات لمنع إضافة أو حذف صفحات خفية:</p>
+  <div class="path">Insert <span class="arr">→</span> Page Number <span class="arr">→</span> Bottom of Page <span class="arr">→</span> Page X of Y</div>
+
+  <!-- Example 3 -->
+  <div class="example">
+    <div class="ex-head">📋 مثال ٣ — تنسيق عقد بيع احترافي خطوة بخطوة</div>
+    <div class="ex-body">
+      <h4>السيناريو: عقد بيع شقة مكتوب كنص عشوائي — المطلوب تحويله لعقد احترافي</h4>
+      <ol>
+        <li><strong>الصفحة:</strong> A4 — هوامش: يمين 3 سم (للتجليد)، باقي الجهات 2.5 سم</li>
+        <li><strong>البسملة والعنوان:</strong> Sakkal Majalla 18 Bold Center Underline</li>
+        <li><strong>بيانات الأطراف:</strong> جدول 1×2 بلا حدود — البائع يمين، المشتري يسار</li>
+        <li><strong>البنود:</strong> Multilevel List → ترقيم تلقائي ١، ١.١، ١.١.١</li>
+        <li><strong>نص البنود:</strong> Sakkal Majalla 12 — Justify — تباعد 1.5</li>
+        <li><strong>الأرقام المالية:</strong> أضيفي الأرقام بالحروف بين قوسين بعد كل مبلغ</li>
+        <li><strong>Keep with next:</strong> فعّليه على عناوين البنود لمنع قطعها</li>
+        <li><strong>Footer:</strong> "صفحة X من Y — عقد البيع المحرر في ..."</li>
+        <li><strong>Content Controls:</strong> أضيفيها للبيانات المتغيرة (الأسماء، التواريخ، المبالغ)</li>
+        <li><strong>الحماية:</strong> Restrict Editing + Filling in forms + كلمة مرور</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- 06. STANDARD CONTRACT CLAUSES -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div>
+      <h2>البنود القياسية في العقود المصرية</h2>
+      <div class="sec-why">محتوى قانوني جاهز للاستخدام — ١٠ دقايق</div>
+    </div>
+  </div>
+
+  <p>هناك بنود ثابتة تقريباً في كل عقد مصري. المحامي المحترف يحفظها في مكتبة نصوص (Building Blocks) لاستخدامها الفوري.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <span class="c-icon">⚖️</span>
+      <h3>بند الاختصاص القضائي</h3>
+      <p>"يختص القضاء المصري بنظر أي نزاع ينشأ عن تفسير أو تنفيذ هذا العقد، وتختص بنظره محاكم [المحافظة]."</p>
+    </div>
+    <div class="card">
+      <span class="c-icon">📅</span>
+      <h3>بند القوة القاهرة</h3>
+      <p>"لا يُعدّ أي طرف مسؤولاً عن التأخير في التنفيذ إذا كان ناجماً عن ظروف قاهرة خارجة عن إرادته..."</p>
+    </div>
+    <div class="card">
+      <span class="c-icon">🔔</span>
+      <h3>بند الإخطار</h3>
+      <p>"يُعدّ الإخطار صحيحاً إذا أُرسل بخطاب مسجَّل مصحوب بعلم الوصول أو بالبريد الإلكتروني المعتمد..."</p>
+    </div>
+    <div class="card">
+      <span class="c-icon">🔒</span>
+      <h3>بند السرية</h3>
+      <p>"يلتزم الأطراف بالحفاظ على سرية جميع المعلومات المتعلقة بهذا العقد وعدم الإفصاح عنها..."</p>
+    </div>
+    <div class="card">
+      <span class="c-icon">✍️</span>
+      <h3>بند التعديل</h3>
+      <p>"لا يكون أي تعديل في بنود هذا العقد صحيحاً وملزماً إلا إذا تمّ بموافقة خطية من الطرفين..."</p>
+    </div>
+    <div class="card">
+      <span class="c-icon">📋</span>
+      <h3>بند الحلول</h3>
+      <p>"يسري هذا العقد على الخلفاء والورثة والمنتقل إليهم من الطرفين..."</p>
+    </div>
+  </div>
+
+  <div class="tip">
+    <span class="t-tag">بناء مكتبة البنود القانونية</span>
+    احفظي كل بند قياسي كـ Quick Part (Building Block): حدّدي البند ← Insert → Quick Parts → Save Selection. ثم في أي عقد جديد: اكتبي اسم البند واضغطي <span class="key">F3</span> — البند يظهر كاملاً في ثانية واحدة.
+  </div>
+
+  <!-- Drill 3 -->
+  <div class="drill">
+    <span class="drill-tag">تدريب ٣ — بناء مكتبة البنود القانونية</span>
+    <h4>أنشئي مكتبة بنود قانونية جاهزة للاستخدام:</h4>
+    <ol>
+      <li>أنشئي مستند جديد واكتبي البنود الستة القياسية أعلاه بتنسيق احترافي</li>
+      <li>حدّدي بند "الاختصاص القضائي" كاملاً</li>
+      <li>Insert → Quick Parts → Save Selection to Quick Part Gallery</li>
+      <li>Name: "اختصاص" | Gallery: AutoText | OK</li>
+      <li>كرّري لكل البنود الستة (اختصاص / قوة_قاهرة / إخطار / سرية / تعديل / حلول)</li>
+      <li>افتحي مستند عقد جديد — اكتبي "اختصاص" واضغطي <span class="key">F3</span> — البند يظهر كاملاً</li>
+      <li>جرّبي استدعاء كل البنود وتجميعها في عقد واحد بضغطات فقط</li>
+    </ol>
+    <div class="drill-time">⏱ الوقت المتوقع: 12 دقيقة</div>
+  </div>
+</section>
+
+<!-- 07. SHORTCUTS -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <div>
+      <h2>الاختصارات الكاملة للمحاضرة</h2>
+      <div class="sec-why">جدول مرجعي شامل</div>
+    </div>
+  </div>
+
+  <table class="sc-table">
+    <thead><tr><th>الاختصار</th><th>الوظيفة</th><th>الاستخدام في العقود</th></tr></thead>
+    <tbody>
+      <tr><td><span class="key">Tab</span></td><td>الانتقال لمستوى ترقيم أعمق</td><td><span class="sc-law">من البند الرئيسي لفقرة فرعية</span></td></tr>
+      <tr><td><span class="key">Shift + Tab</span></td><td>الرجوع لمستوى ترقيم أعلى</td><td><span class="sc-law">من الفقرة الفرعية للبند الرئيسي</span></td></tr>
+      <tr><td><span class="key">F3</span></td><td>استدعاء Building Block</td><td><span class="sc-law">إدراج بند قانوني من المكتبة فوراً</span></td></tr>
+      <tr><td><span class="key">Ctrl + Shift + S</span></td><td>حفظ باسم (Save As)</td><td><span class="sc-law">حفظ نسخة جديدة من العقد مع تاريخ</span></td></tr>
+      <tr><td><span class="key">Alt + Shift + D</span></td><td>إدراج التاريخ الحالي تلقائياً</td><td><span class="sc-law">تاريخ تحرير العقد</span></td></tr>
+      <tr><td><span class="key">Ctrl + Alt + F</span></td><td>إدراج حاشية سفلية</td><td><span class="sc-law">الإشارة لمادة قانونية مرجعية</span></td></tr>
+      <tr><td><span class="key">Ctrl + 1</span></td><td>تباعد سطر واحد</td><td><span class="sc-law">بيانات الأطراف والتوقيعات</span></td></tr>
+      <tr><td><span class="key">Ctrl + 5</span></td><td>تباعد 1.5</td><td><span class="sc-law">متن البنود القانونية</span></td></tr>
+      <tr><td><span class="key">Ctrl + J</span></td><td>محاذاة ضبط (Justify)</td><td><span class="sc-law">نص كل بنود العقد</span></td></tr>
+      <tr><td><span class="key">Ctrl + Enter</span></td><td>صفحة جديدة</td><td><span class="sc-law">فصل ملحق العقد عن متنه</span></td></tr>
+      <tr><td><span class="key">Alt + F9</span></td><td>إظهار أكواد الحقول</td><td><span class="sc-law">مراجعة Content Controls في العقد</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:24px">رموز مهمة في تنسيق العقود</h3>
+  <div class="grid-3">
+    <div class="card">
+      <h3>§</h3>
+      <p>رمز المادة القانونية (Section Sign). Insert → Symbol. يُستخدم للإشارة لمواد القانون المصري.</p>
+    </div>
+    <div class="card">
+      <h3>¶</h3>
+      <p>رمز الفقرة (Pilcrow). يظهر عند تفعيل Show/Hide. يساعد اكتشاف مشاكل التنسيق الخفية.</p>
+    </div>
+    <div class="card">
+      <h3>{ }</h3>
+      <p>أقواس الحقول — تظهر مع Alt+F9. تشير لوجود حقل تلقائي (Content Control أو Mail Merge).</p>
+    </div>
+  </div>
+</section>
+
+<!-- 08. GLOSSARY -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">08</div>
+    <div>
+      <h2>قاموس مصطلحات المحاضرة</h2>
+      <div class="sec-why">مرجع سريع للمراجعة</div>
+    </div>
+  </div>
+  <dl class="glossary">
+    <div><dt>Multilevel List</dt><dd>قائمة متعددة المستويات — نظام ترقيم تلقائي هرمي (١ ← ١.١ ← ١.١.١) يتحدث تلقائياً عند الإضافة أو الحذف.</dd></div>
+    <div><dt>Content Control</dt><dd>حقل تعبئة ذكي يُدرج في العقد — يسمح بملء البيانات دون تعديل النص القانوني الثابت.</dd></div>
+    <div><dt>Developer Tab</dt><dd>تبويب المطوّر — يحتوي أدوات Content Controls وحماية النماذج. يجب تفعيله يدوياً من File → Options.</dd></div>
+    <div><dt>Plain Text Control</dt><dd>حقل نص عادي بلا تنسيق. للأسماء والأرقام القومية والمبالغ في العقود.</dd></div>
+    <div><dt>Date Picker Control</dt><dd>حقل تاريخ يعرض تقويماً. لتاريخ العقد وتواريخ الاستحقاق.</dd></div>
+    <div><dt>Drop-Down List Control</dt><dd>قائمة منسدلة بخيارات محددة مسبقاً. لطريقة السداد أو نوع العقد.</dd></div>
+    <div><dt>Check Box Control</dt><dd>خانة اختيار تفاعلية. للموافقة على بنود أو تحديد خيارات في العقد.</dd></div>
+    <div><dt>Filling in Forms</dt><dd>خيار الحماية الذي يسمح فقط بملء حقول التعبئة — ويمنع تعديل أي نص آخر.</dd></div>
+    <div><dt>Keep with Next</dt><dd>خيار تنسيق يمنع فصل الفقرة عن الفقرة التالية — يضمن بقاء عنوان البند مع أول سطر من نصه.</dd></div>
+    <div><dt>Building Blocks</dt><dd>مكتبة نصوص قانونية جاهزة محفوظة — تُستدعى بكلمة مفتاحية + F3.</dd></div>
+    <div><dt>Quick Parts</dt><dd>نفس Building Blocks — القائمة التي تُدار منها النصوص الجاهزة من Insert.</dd></div>
+    <div><dt>Page X of Y</dt><dd>ترقيم صفحات يعرض رقم الصفحة من إجمالي الصفحات — لمنع إضافة/حذف صفحات خفية في العقد.</dd></div>
+  </dl>
+</section>
+
+<!-- 09. FINAL DRILL -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">09</div>
+    <div>
+      <h2>التدريب الختامي الشامل</h2>
+      <div class="sec-why">بناء عقد بيع احترافي كامل — ١٥ دقيقة</div>
+    </div>
+  </div>
+
+  <div class="drill">
+    <span class="drill-tag">تدريب ختامي — عقد بيع شقة احترافي قابل للتعبئة</span>
+    <h4>المطلوب: إنشاء عقد بيع شقة سكنية كامل ومؤمَّن بـ Content Controls</h4>
+    <ol>
+      <li><strong>الإعداد:</strong> مستند جديد — A4 — هامش يمين 3 سم — باقي الجهات 2.5 سم</li>
+      <li><strong>الرأس:</strong> بسملة (16 Bold Center) + "عقد بيع شقة سكنية" (18 Bold Center Underline)</li>
+      <li><strong>الأطراف:</strong> جدول 1×2 بلا حدود — Plain Text Controls لـ (اسم البائع، الرقم القومي، العنوان) في كل خلية</li>
+      <li><strong>ترقيم البنود:</strong> Multilevel List لـ ٧ بنود رئيسية مع فقراتها الفرعية:
+        <ul style="margin:8px 0;padding-right:20px;color:rgba(248,244,237,0.75);font-size:13.5px;">
+          <li>البند ١: تمهيد وسند الملكية</li>
+          <li>البند ٢: محل العقد (Plain Text للعنوان والمساحة)</li>
+          <li>البند ٣: الثمن والسداد (Plain Text للمبلغ + Check Box لطريقة السداد)</li>
+          <li>البند ٤: التسليم (Date Picker لتاريخ التسليم)</li>
+          <li>البند ٥: التزامات البائع</li>
+          <li>البند ٦: الفسخ والغرامة</li>
+          <li>البند ٧: أحكام عامة (استخدمي Building Blocks للاختصاص القضائي والقوة القاهرة)</li>
+        </ul>
+      </li>
+      <li><strong>Footer:</strong> "صفحة X من Y — عقد البيع المحرر في " + Date Picker</li>
+      <li><strong>الحماية:</strong> Developer → Restrict Editing → Filling in forms → Enforce Protection بكلمة مرور "law2025"</li>
+      <li><strong>الحفظ:</strong> Save As → Word Template (.dotx) → "عقد_بيع_شقة_سكنية.dotx"</li>
+    </ol>
+    <div class="drill-time">⏱ الوقت المتوقع: 15 دقيقة</div>
+  </div>
+</section>
+
+<!-- 10. HOMEWORK -->
+<section>
+  <div class="sec-head">
+    <div class="sec-num">10</div>
+    <div>
+      <h2>الواجب البيتي والمراجعة الذاتية</h2>
+      <div class="sec-why">سلّميه في المحاضرة القادمة</div>
+    </div>
+  </div>
+
+  <h3 style="margin:0 0 14px">الواجب: بناء مكتبة عقود قانونية متكاملة</h3>
+  <ul class="checklist">
+    <li><div class="check-box"></div>
+      <div><strong>عقد إيجار .dotx:</strong> عقد إيجار سكني كامل (٨ بنود على الأقل) — مع Multilevel List للبنود + Content Controls للبيانات المتغيرة + حماية بكلمة مرور.</div>
+    </li>
+    <li><div class="check-box"></div>
+      <div><strong>عقد توكيل .dotx:</strong> عقد توكيل عام — مع Drop-Down List لنوع التوكيل (عام/خاص) + Check Box للصلاحيات + Date Picker للمدة.</div>
+    </li>
+    <li><div class="check-box"></div>
+      <div><strong>مكتبة البنود:</strong> احفظي البنود الستة القياسية (الاختصاص، القوة القاهرة، الإخطار، السرية، التعديل، الحلول) كـ Building Blocks — وسلّمي لقطة شاشة تُظهر المكتبة.</div>
+    </li>
+    <li><div class="check-box"></div>
+      <div><strong>الأرقام بالحروف:</strong> في كل مبلغ مالي في العقدين — اكتبيه بالأرقام ثم بين قوسين بالحروف كاملاً.</div>
+    </li>
+    <li><div class="check-box"></div>
+      <div><strong>Footer احترافي:</strong> كل صفحة تحمل "صفحة X من Y" مع عنوان العقد — بدون ظهور في الغلاف.</div>
+    </li>
+  </ul>
+
+  <h3 style="margin:28px 0 14px">أسئلة المراجعة الذاتية</h3>
+  <div class="q-grid">
+    <div class="q-card">
+      <h3>🤔 نظرية</h3>
+      <ol>
+        <li>ما هو Multilevel List ولماذا يُفضَّل على الترقيم اليدوي؟</li>
+        <li>ما الفرق بين Plain Text Control و Rich Text Control؟</li>
+        <li>لماذا نكتب المبالغ بالأرقام والحروف معاً في العقود؟</li>
+        <li>ما هو خيار "Filling in forms" في Restrict Editing؟</li>
+        <li>ما هي Building Blocks ولماذا يحتاجها المحامي؟</li>
+        <li>ما وظيفة "Keep with next" في تنسيق العقود؟</li>
+      </ol>
+    </div>
+    <div class="q-card">
+      <h3>⌨️ عملية</h3>
+      <ol>
+        <li>كيف أنتقل بين مستويات الترقيم في Multilevel List؟</li>
+        <li>كيف أُفعّل تبويب Developer؟</li>
+        <li>كيف أُدرج Date Picker Control في العقد؟</li>
+        <li>كيف أحمي العقد بحيث يُملأ الحقول فقط؟</li>
+        <li>كيف أحفظ بنداً قانونياً كـ Building Block؟</li>
+        <li>كيف أُدرج ترقيم "صفحة X من Y" في Footer؟</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:28px">
+    <span class="c-tag">ما الذي سنتعلمه في المحاضرة الثامنة</span>
+    التعاون والمشاركة في Word — OneDrive والتعديل المشترك Real-time، إدارة الإصدارات (Version History)، مشاركة المستند بصلاحيات محددة، وتحويل Word إلى PDF.
+  </div>
+</section>
+
+<footer>
+  SUNSHINE T ACADEMY — WORD SKILLS — LAW FACULTY — LECTURE 07 / 10 — REVIEW SHEET
+</footer>
+
+</div>
+</body>
+</html>
